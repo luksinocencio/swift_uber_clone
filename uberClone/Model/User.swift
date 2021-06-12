@@ -2,10 +2,11 @@
 //  User.swift
 //  uberClone
 //
-//  Created by P21 Sistemas on 09/03/20.
-//  Copyright © 2020 Lucas Inocencio. All rights reserved.
+//  Created by Lucas Inocencio on 12/06/21.
+//  Copyright © 2021 Lucas Inocencio. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 struct User {
@@ -19,3 +20,4 @@ struct User {
         self.accountType = dictionary["accountType"] as? Int ?? 0
     }
 }
+
