@@ -11,6 +11,7 @@
 		E85464152402352D00C95F3C /* UIApplication+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85464142402352D00C95F3C /* UIApplication+Extensions.swift */; };
 		E8BD33C226750796008A394B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BD33C126750796008A394B /* User.swift */; };
 		E8BD33C4267508D8008A394B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E8BD33C3267508D8008A394B /* GoogleService-Info.plist */; };
+		E8BD33C62675108C008A394B /* UIWindow+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BD33C52675108C008A394B /* UIWindow+Extensions.swift */; };
 		E8D6825223F23D860020D015 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D6825123F23D860020D015 /* AppDelegate.swift */; };
 		E8D6825423F23D860020D015 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D6825323F23D860020D015 /* SceneDelegate.swift */; };
 		E8D6825623F23D860020D015 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D6825523F23D860020D015 /* ViewController.swift */; };
@@ -38,6 +39,7 @@
 		E85464142402352D00C95F3C /* UIApplication+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extensions.swift"; sourceTree = "<group>"; };
 		E8BD33C126750796008A394B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E8BD33C3267508D8008A394B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E8BD33C52675108C008A394B /* UIWindow+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Extensions.swift"; sourceTree = "<group>"; };
 		E8D6824E23F23D860020D015 /* uberClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = uberClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8D6825123F23D860020D015 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E8D6825323F23D860020D015 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				EDC42A4C23F2E2D300F57907 /* UIColor+Extension.swift */,
 				E85464142402352D00C95F3C /* UIApplication+Extensions.swift */,
 				ED614CAE24193240003234EC /* LocationHandler.swift */,
+				E8BD33C52675108C008A394B /* UIWindow+Extensions.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -301,6 +304,7 @@
 				E8D6825623F23D860020D015 /* ViewController.swift in Sources */,
 				E8BD33C226750796008A394B /* User.swift in Sources */,
 				ED47668C23F5E12300F86E73 /* HomeController.swift in Sources */,
+				E8BD33C62675108C008A394B /* UIWindow+Extensions.swift in Sources */,
 				EDC42A5123F2EA7B00F57907 /* SignUpController.swift in Sources */,
 				E8D6826B23F23EB60020D015 /* LoginController.swift in Sources */,
 				EDC42A4B23F2D6E500F57907 /* UITextField+Extensions.swift in Sources */,

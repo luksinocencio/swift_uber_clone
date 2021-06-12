@@ -143,7 +143,7 @@ class SignUpController: UIViewController {
     func updateUserDataAndDismiss(uid: String, values: [String: Any]) {
         REF_USERS.child(uid).updateChildValues(values, withCompletionBlock: { (error, ref) in
             print("Successfully registered user and saved data")
-            guard let controller = UIApplication.shared.keyWindow?.rootViewController as? HomeController else { return }
+            guard let controller = UIWindow.key as? HomeController else { return }
             controller.configureUI()
             self.dismiss(animated: true, completion: nil)
         })
