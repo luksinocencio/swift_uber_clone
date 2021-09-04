@@ -1,11 +1,3 @@
-//
-//  UITextField+Extensions.swift
-//  uberClone
-//
-//  Created by Lucas Inocencio on 10/02/20.
-//  Copyright © 2020 Lucas Inocencio. All rights reserved.
-//
-
 import UIKit
 
 extension UITextField {

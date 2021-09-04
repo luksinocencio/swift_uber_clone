@@ -1,15 +1,6 @@
-//
-//  AuthButton.swift
-//  uberClone
-//
-//  Created by P21 Sistemas on 11/02/20.
-//  Copyright © 2020 Lucas Inocencio. All rights reserved.
-//
-
 import UIKit
 
 class AuthButton: UIButton {
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         setTitleColor(UIColor(white: 1, alpha: 0.5), for: .normal)
@@ -22,6 +13,4 @@ class AuthButton: UIButton {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemeted")
     }
-    
-
 }

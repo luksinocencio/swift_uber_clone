@@ -1,11 +1,3 @@
-//
-//  SignUpController.swift
-//  uberClone
-//
-//  Created by P21 Sistemas on 11/02/20.
-//  Copyright © 2020 Lucas Inocencio. All rights reserved.
-//
-
 import Firebase
 import UIKit
 import GeoFire
@@ -18,33 +10,32 @@ class SignUpController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupView()
-        
-        print("DEBUG: Location is \(String(describing: location))")
+//        print("DEBUG: Location is \(String(describing: location))")
     }
     
     // MARK: - Properties
-    
-    
     
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "UBER"
         label.font = UIFont(name: "Avenir-Light", size: 36)
         label.textColor = UIColor(white: 1, alpha: 0.8)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private lazy var emailContainerView: UIView = {
         let view = UIView().inputContainerView(image: #imageLiteral(resourceName: "mail"), textField: emailTextField)
         view.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     private lazy var fullNameContainerView: UIView = {
         let view =  UIView().inputContainerView(image: #imageLiteral(resourceName: "person2"), textField: fullNameTextField)
         view.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
         
     }()
@@ -52,10 +43,9 @@ class SignUpController: UIViewController {
     private lazy var passwordContainerView: UIView = {
         let view =  UIView().inputContainerView(image: #imageLiteral(resourceName: "lock"), textField: passwordTextField)
         view.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
-        
     }()
-    
     
     private lazy var accountTypeContainerView: UIView = {
         let view =  UIView().inputContainerView(image: #imageLiteral(resourceName: "person"), segmetedControl: accoountTypeSegmentedControl)
@@ -63,36 +53,29 @@ class SignUpController: UIViewController {
         return view
     }()
     
-    
-    
     // e-mail
-    
-    
     private let emailTextField: UITextField = {
         return UITextField().textField(withPlaceholder: "E-mail", isSecureTextEntry: false)
     }()
     
     // fullname
-    
     private let fullNameTextField: UITextField = {
         return UITextField().textField(withPlaceholder: "Full Name", isSecureTextEntry: false, autocapitalize: .words)
     }()
     
     // password
-    
     private let passwordTextField: UITextField = {
         return UITextField().textField(withPlaceholder: "Password", isSecureTextEntry: true)
     }()
     
     // type user
-    
-    
     private let accoountTypeSegmentedControl: UISegmentedControl = {
         let sc = UISegmentedControl(items: ["Rider", "Driver"])
         sc.backgroundColor = .backgroundColor
         sc.tintColor = UIColor(white: 1, alpha: 0.87)
         sc.selectedSegmentIndex = 0
         sc.selectedSegmentTintColor = .white
+        sc.translatesAutoresizingMaskIntoConstraints = false
         return sc
     }()
     
@@ -100,6 +83,7 @@ class SignUpController: UIViewController {
         let button = AuthButton(type: .system)
         button.setTitle("Sign Up", for: .normal)
         button.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -111,7 +95,7 @@ class SignUpController: UIViewController {
         
         button.addTarget(self, action: #selector(handleShowLogin), for: .touchUpInside)
         button.setAttributedTitle(attributedTitle, for: .normal)
-        
+        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -142,8 +126,9 @@ class SignUpController: UIViewController {
     
     func updateUserDataAndDismiss(uid: String, values: [String: Any]) {
         REF_USERS.child(uid).updateChildValues(values, withCompletionBlock: { (error, ref) in
-            print("Successfully registered user and saved data")
-            guard let controller = UIWindow.key as? HomeController else { return }
+//            print("Successfully registered user and saved data")
+            guard let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) else { return }
+            guard let controller = window.rootViewController as? HomeController else { return }
             controller.configureUI()
             self.dismiss(animated: true, completion: nil)
         })

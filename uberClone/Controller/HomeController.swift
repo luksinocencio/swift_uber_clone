@@ -1,14 +1,6 @@
-//
-//  HomeController.swift
-//  uberClone
-//
-//  Created by P21 Sistemas on 13/02/20.
-//  Copyright © 2020 Lucas Inocencio. All rights reserved.
-//
-
-import UIKit
 import Firebase
 import MapKit
+import UIKit
 
 private let reuseIdentifier = "LocationCell"
 
@@ -25,19 +17,17 @@ class HomeController: UIViewController {
         didSet { locationInputView.user = user }
     }
     
-//    private let service = Service()
+    //    private let service = Service()
     
     private final let locationInputViewHeight: CGFloat = 200.0
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         checkIfUserIsLoggedIn()
         enableLocationServices()
         fetchUserData()
-                signOut()
+//        signOut()
     }
     
     // MARK: - API
@@ -50,14 +40,14 @@ class HomeController: UIViewController {
     
     func checkIfUserIsLoggedIn() {
         if Auth.auth().currentUser?.uid == nil {
-            print("DEBUG: USER not logged")
+//            print("DEBUG: USER not logged")
             DispatchQueue.main.async {
                 let nav = UINavigationController(rootViewController: LoginController())
                 nav.modalPresentationStyle = .fullScreen
                 self.present(nav, animated: true, completion: nil)
             }
         } else {
-            print("USER is is \(String(describing: Auth.auth().currentUser?.uid))")
+//            print("USER is is \(String(describing: Auth.auth().currentUser?.uid))")
             configureUI()
         }
     }
@@ -80,31 +70,29 @@ class HomeController: UIViewController {
     func configureUI() {
         configureMapView()
         view.addSubview(inputActivationView)
+        inputActivationView.translatesAutoresizingMaskIntoConstraints = false
         inputActivationView.centerX(inView: view)
         inputActivationView.setDimensions(height: 50, width: view.frame.width - 64)
         inputActivationView.anchor(top: view.safeAreaLayoutGuide.topAnchor, paddingTop: 32)
         inputActivationView.alpha = 0
         inputActivationView.delegate = self
-        
         UIView.animate(withDuration: 2) {
             self.inputActivationView.alpha = 1
         }
-        
         configureTableView()
     }
     
     func configureMapView() {
         view.addSubview(mapView)
         mapView.frame = view.frame
-        
         mapView.showsUserLocation = true
         mapView.userTrackingMode = .follow
-        
         configureTableView()
     }
     
     func configureLocationInputView() {
         locationInputView.delegate = self
+        locationInputView.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(locationInputView)
         locationInputView.anchor(top: view.topAnchor, left: view.leftAnchor, right: view.rightAnchor, height: locationInputViewHeight)
@@ -116,8 +104,6 @@ class HomeController: UIViewController {
                 self.tableView.frame.origin.y = self.locationInputViewHeight
             })
         }
-        
-        
     }
     
     func configureTableView() {
@@ -126,13 +112,11 @@ class HomeController: UIViewController {
         tableView.register(LocationCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.rowHeight = 60
         tableView.tableFooterView = UIView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         let height = view.frame.height - locationInputViewHeight
         tableView.frame = CGRect(x: 0, y: view.frame.height, width: view.frame.width, height: height)
-        
         view.addSubview(tableView)
     }
-    
-    
 }
 
 // MARK: - LocationServices
@@ -195,9 +179,6 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! LocationCell
-        
         return cell
     }
-    
-    
 }

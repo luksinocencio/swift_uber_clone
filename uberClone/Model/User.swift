@@ -1,11 +1,3 @@
-//
-//  User.swift
-//  uberClone
-//
-//  Created by Lucas Inocencio on 12/06/21.
-//  Copyright © 2021 Lucas Inocencio. All rights reserved.
-//
-
 import Foundation
 import UIKit
 

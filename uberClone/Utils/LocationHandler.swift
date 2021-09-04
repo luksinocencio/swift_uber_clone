@@ -1,11 +1,3 @@
-//
-//  LocationHandler.swift
-//  uberClone
-//
-//  Created by P21 Sistemas on 11/03/20.
-//  Copyright © 2020 Lucas Inocencio. All rights reserved.
-//
-
 import CoreLocation
 
 class LocationHandler: NSObject, CLLocationManagerDelegate {
@@ -16,7 +8,6 @@ class LocationHandler: NSObject, CLLocationManagerDelegate {
     
     override init() {
         super.init()
-        
         locationManager = CLLocationManager()
         locationManager.delegate = self
     }

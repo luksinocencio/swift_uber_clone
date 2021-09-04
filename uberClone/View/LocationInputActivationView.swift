@@ -1,14 +1,6 @@
-//
-//  LocationInputActivationView.swift
-//  uberClone
-//
-//  Created by Lucas Inocencio on 26/02/20.
-//  Copyright © 2020 Lucas Inocencio. All rights reserved.
-//
-
 import UIKit
 
-protocol LocationInputActivationViewDelegate: class {
+protocol LocationInputActivationViewDelegate: AnyObject {
     func presentLocationInputView()
 }
 

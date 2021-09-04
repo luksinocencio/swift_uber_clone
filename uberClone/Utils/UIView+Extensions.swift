@@ -1,11 +1,3 @@
-//
-//  Extensions.swift
-//  uberClone
-//
-//  Created by Lucas Inocencio on 10/02/20.
-//  Copyright © 2020 Lucas Inocencio. All rights reserved.
-//
-
 import UIKit
 
 extension UIView {
@@ -63,12 +55,13 @@ extension UIView {
     
     func inputContainerView(image: UIImage, textField: UITextField? = nil, segmetedControl: UISegmentedControl? = nil) -> UIView {
         let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
         
         let imageView = UIImageView()
         imageView.image = image
         imageView.alpha = 0.87
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(imageView)
-        
         
         if let textField = textField {
             imageView.centerY(inView: view)

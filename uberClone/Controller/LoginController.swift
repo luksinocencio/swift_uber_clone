@@ -1,13 +1,5 @@
-//
-//  LoginController.swift
-//  uberClone
-//
-//  Created by Lucas Inocencio on 10/02/20.
-//  Copyright © 2020 Lucas Inocencio. All rights reserved.
-//
-
-import UIKit
 import Firebase
+import UIKit
 
 class LoginController: UIViewController {
     
@@ -18,28 +10,27 @@ class LoginController: UIViewController {
         setupView()
     }
     
-    //    override var preferredStatusBarStyle: UIStatusBarStyle {
-    //        return .lightContent
-    //    }
-    
     // MARK: - UIElements
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "UBER"
         label.font = UIFont(name: "Avenir-Light", size: 36)
         label.textColor = UIColor(white: 1, alpha: 0.8)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private lazy var emailContainerView: UIView = {
         let view = UIView().inputContainerView(image: #imageLiteral(resourceName: "mail"), textField: emailTextField)
         view.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     private lazy var passwordContainerView: UIView = {
         let view =  UIView().inputContainerView(image: #imageLiteral(resourceName: "lock"), textField: passwordTextField)
         view.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
         
     }()
@@ -56,6 +47,7 @@ class LoginController: UIViewController {
         let button = AuthButton(type: .system)
         button.setTitle("Log In", for: .normal)
         button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -67,7 +59,7 @@ class LoginController: UIViewController {
         
         button.addTarget(self, action: #selector(handleShowSignUp), for: .touchUpInside)
         button.setAttributedTitle(attributedTitle, for: .normal)
-        
+        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -119,10 +111,10 @@ class LoginController: UIViewController {
                 return
             }
             
-            
-            guard let controller = UIApplication.shared.keyWindow?.rootViewController as? HomeController else { return }
+            guard let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) else { return }
+            guard let controller = window.rootViewController as? HomeController else { return }
             controller.configureUI()
-            self.dismiss(animated: true, completion: nil)   
+            self.dismiss(animated: true, completion: nil)
         }
     }
 }
