@@ -1,12 +1,7 @@
-import Firebase
 import CoreLocation
-
-let DB_REF = Database.database().reference()
-let REF_USERS = DB_REF.child("users")
-let REF_DRIVERS_LOCATIONS = DB_REF.child("driver-locations")
+import Firebase
 
 struct Service {
-    
     static let shared = Service()
     let currentUid = Auth.auth().currentUser?.uid
     
@@ -19,5 +14,4 @@ struct Service {
         }
         
     }
-    
 }

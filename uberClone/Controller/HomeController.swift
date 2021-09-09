@@ -27,7 +27,7 @@ class HomeController: UIViewController {
         checkIfUserIsLoggedIn()
         enableLocationServices()
         fetchUserData()
-//        signOut()
+        signOut()
     }
     
     // MARK: - API
@@ -42,7 +42,7 @@ class HomeController: UIViewController {
         if Auth.auth().currentUser?.uid == nil {
 //            print("DEBUG: USER not logged")
             DispatchQueue.main.async {
-                let nav = UINavigationController(rootViewController: LoginController())
+                let nav = UINavigationController(rootViewController: SignInController())
                 nav.modalPresentationStyle = .fullScreen
                 self.present(nav, animated: true, completion: nil)
             }
@@ -56,7 +56,7 @@ class HomeController: UIViewController {
         do {
             try Auth.auth().signOut()
             DispatchQueue.main.async {
-                let nav = UINavigationController(rootViewController: LoginController())
+                let nav = UINavigationController(rootViewController: SignInController())
                 nav.modalPresentationStyle = .fullScreen
                 self.present(nav, animated: true, completion: nil)
             }

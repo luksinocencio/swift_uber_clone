@@ -1,12 +1,11 @@
 import Firebase
 import UIKit
 
-class LoginController: UIViewController {
+class SignInController: UIViewController {
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupView()
     }
     
@@ -20,27 +19,26 @@ class LoginController: UIViewController {
         return label
     }()
     
+    private let emailTextField: CustomTextField = {
+        let tf = CustomTextField(placeholder: "E-mail")
+        tf.autocapitalizationType = .none
+        tf.keyboardType = .emailAddress
+        tf.autocorrectionType = .no
+        return tf
+    }()
+    
+    private let passwordTextField : CustomTextField = {
+        let tf = CustomTextField(placeholder: "Password")
+        tf.isSecureTextEntry = true
+        return tf
+    }()
+    
     private lazy var emailContainerView: UIView = {
-        let view = UIView().inputContainerView(image: #imageLiteral(resourceName: "mail"), textField: emailTextField)
-        view.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+        return InputContainerView(image: #imageLiteral(resourceName: "mail"), textField: emailTextField)
     }()
     
-    private lazy var passwordContainerView: UIView = {
-        let view =  UIView().inputContainerView(image: #imageLiteral(resourceName: "lock"), textField: passwordTextField)
-        view.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-        
-    }()
-    
-    private let emailTextField: UITextField = {
-        return UITextField().textField(withPlaceholder: "E-mail", isSecureTextEntry: false)
-    }()
-    
-    private let passwordTextField: UITextField = {
-        return UITextField().textField(withPlaceholder: "Password", isSecureTextEntry: true)
+    private lazy var passwordContainerView: InputContainerView = {
+        return InputContainerView(image: #imageLiteral(resourceName: "lock"), textField: passwordTextField)
     }()
     
     private let loginButton: AuthButton = {
@@ -63,6 +61,15 @@ class LoginController: UIViewController {
         return button
     }()
     
+    private let stackView: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.distribution = .fillEqually
+        stack.spacing = 24
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }()
+    
     // MARK: - Selectors
     
     @objc func handleShowSignUp() {
@@ -78,22 +85,29 @@ class LoginController: UIViewController {
         view.backgroundColor = .backgroundColor
         
         self.view.addSubview(titleLabel)
-        titleLabel.anchor(top: view.safeAreaLayoutGuide.topAnchor)
-        titleLabel.centerX(inView: view)
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40),
+            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
         
-        let stack = UIStackView(arrangedSubviews: [emailContainerView, passwordContainerView, loginButton])
-        stack.axis = .vertical
-        stack.distribution = .fillEqually
-        stack.spacing = 24
+        stackView.addArrangedSubview(emailContainerView)
+        stackView.addArrangedSubview(passwordContainerView)
+        stackView.addArrangedSubview(loginButton)
         
-        view.addSubview(stack)
-        stack.anchor(top: titleLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 40, paddingLeft: 16, paddingRight: 16)
+        view.addSubview(stackView)
+        
+        NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 40),
+            stackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
+            stackView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16)
+        ])
         
         view.addSubview(dontHaveAccountButton)
-        dontHaveAccountButton.centerX(inView: view)
-        dontHaveAccountButton.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor, height: 32)
-        
-        
+        NSLayoutConstraint.activate([
+            dontHaveAccountButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            dontHaveAccountButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            dontHaveAccountButton.heightAnchor.constraint(equalToConstant: 32)
+        ])
     }
     
     func configureNavigationBar() {

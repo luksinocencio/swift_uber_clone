@@ -11,7 +11,6 @@ class SignUpController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-//        print("DEBUG: Location is \(String(describing: location))")
     }
     
     // MARK: - Properties
@@ -25,47 +24,46 @@ class SignUpController: UIViewController {
         return label
     }()
     
+    private let emailTextField: CustomTextField = {
+        let tf = CustomTextField(placeholder: "E-mail")
+        tf.autocapitalizationType = .none
+        tf.keyboardType = .emailAddress
+        tf.autocorrectionType = .no
+        return tf
+    }()
+    
+    private let fullNameTextField: CustomTextField = {
+        let tf = CustomTextField(placeholder: "Full Name")
+        tf.autocorrectionType = .no
+        tf.translatesAutoresizingMaskIntoConstraints = false
+        return tf
+    }()
+    
+    private let passwordTextField : CustomTextField = {
+        let tf = CustomTextField(placeholder: "Password")
+        tf.isSecureTextEntry = true
+        tf.translatesAutoresizingMaskIntoConstraints = false
+        return tf
+    }()
+    
     private lazy var emailContainerView: UIView = {
-        let view = UIView().inputContainerView(image: #imageLiteral(resourceName: "mail"), textField: emailTextField)
-        view.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+        return InputContainerView(image: #imageLiteral(resourceName: "mail"), textField: emailTextField)
     }()
     
     private lazy var fullNameContainerView: UIView = {
-        let view =  UIView().inputContainerView(image: #imageLiteral(resourceName: "person2"), textField: fullNameTextField)
-        view.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-        
+        return InputContainerView(image: #imageLiteral(resourceName: "person"), textField: fullNameTextField)
     }()
     
-    private lazy var passwordContainerView: UIView = {
-        let view =  UIView().inputContainerView(image: #imageLiteral(resourceName: "lock"), textField: passwordTextField)
-        view.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+    private lazy var passwordContainerView: InputContainerView = {
+        return InputContainerView(image: #imageLiteral(resourceName: "lock"), textField: passwordTextField)
     }()
     
+ 
     private lazy var accountTypeContainerView: UIView = {
         let view =  UIView().inputContainerView(image: #imageLiteral(resourceName: "person"), segmetedControl: accoountTypeSegmentedControl)
         view.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
-    }()
-    
-    // e-mail
-    private let emailTextField: UITextField = {
-        return UITextField().textField(withPlaceholder: "E-mail", isSecureTextEntry: false)
-    }()
-    
-    // fullname
-    private let fullNameTextField: UITextField = {
-        return UITextField().textField(withPlaceholder: "Full Name", isSecureTextEntry: false, autocapitalize: .words)
-    }()
-    
-    // password
-    private let passwordTextField: UITextField = {
-        return UITextField().textField(withPlaceholder: "Password", isSecureTextEntry: true)
     }()
     
     // type user
@@ -87,6 +85,15 @@ class SignUpController: UIViewController {
         return button
     }()
     
+    private let stackView: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.distribution = .fillEqually
+        stack.spacing = 24
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }()
+    
     private let dontHaveAccountButton: UIButton = {
         let button = UIButton(type: .system)
         let attributedTitle = NSMutableAttributedString(string: "Already have an account? ", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16), NSAttributedString.Key.foregroundColor: UIColor.lightGray])
@@ -104,20 +111,29 @@ class SignUpController: UIViewController {
         view.backgroundColor = .backgroundColor
         
         self.view.addSubview(titleLabel)
-        titleLabel.anchor(top: view.safeAreaLayoutGuide.topAnchor)
-        titleLabel.centerX(inView: view)
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40),
+            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
         
-        let stack = UIStackView(arrangedSubviews: [emailContainerView, fullNameContainerView, passwordContainerView, accountTypeContainerView, loginButton])
-        stack.axis = .vertical
-        stack.distribution = .fillProportionally
-        stack.spacing = 24
+        stackView.addArrangedSubview(emailContainerView)
+        stackView.addArrangedSubview(fullNameContainerView)
+        stackView.addArrangedSubview(passwordContainerView)
+        stackView.addArrangedSubview(loginButton)
         
-        view.addSubview(stack)
-        stack.anchor(top: titleLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 40, paddingLeft: 16, paddingRight: 16)
+        view.addSubview(stackView)
+        NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 40),
+            stackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
+            stackView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16)
+        ])
         
         view.addSubview(dontHaveAccountButton)
-        dontHaveAccountButton.centerX(inView: view)
-        dontHaveAccountButton.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor, height: 32)
+        NSLayoutConstraint.activate([
+            dontHaveAccountButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            dontHaveAccountButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            dontHaveAccountButton.heightAnchor.constraint(equalToConstant: 32)
+        ])
     }
     
     @objc func handleShowLogin() {
@@ -126,7 +142,6 @@ class SignUpController: UIViewController {
     
     func updateUserDataAndDismiss(uid: String, values: [String: Any]) {
         REF_USERS.child(uid).updateChildValues(values, withCompletionBlock: { (error, ref) in
-//            print("Successfully registered user and saved data")
             guard let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) else { return }
             guard let controller = window.rootViewController as? HomeController else { return }
             controller.configureUI()
@@ -158,7 +173,6 @@ class SignUpController: UIViewController {
                     self.updateUserDataAndDismiss(uid: uid, values: values)
                 })
             }
-            
             self.updateUserDataAndDismiss(uid: uid, values: values)
         }
     }
