@@ -27,7 +27,7 @@ class HomeController: UIViewController {
         checkIfUserIsLoggedIn()
         enableLocationServices()
         fetchUserData()
-        signOut()
+//        signOut()
     }
     
     // MARK: - API
@@ -71,9 +71,12 @@ class HomeController: UIViewController {
         configureMapView()
         view.addSubview(inputActivationView)
         inputActivationView.translatesAutoresizingMaskIntoConstraints = false
-        inputActivationView.centerX(inView: view)
-        inputActivationView.setDimensions(height: 50, width: view.frame.width - 64)
-        inputActivationView.anchor(top: view.safeAreaLayoutGuide.topAnchor, paddingTop: 32)
+        NSLayoutConstraint.activate([
+            inputActivationView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            inputActivationView.heightAnchor.constraint(equalToConstant: 50),
+            inputActivationView.widthAnchor.constraint(equalToConstant: view.frame.width - 64),
+            inputActivationView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32)
+        ])
         inputActivationView.alpha = 0
         inputActivationView.delegate = self
         UIView.animate(withDuration: 2) {
@@ -95,7 +98,12 @@ class HomeController: UIViewController {
         locationInputView.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(locationInputView)
-        locationInputView.anchor(top: view.topAnchor, left: view.leftAnchor, right: view.rightAnchor, height: locationInputViewHeight)
+        NSLayoutConstraint.activate([
+            locationInputView.topAnchor.constraint(equalTo: view.topAnchor),
+            locationInputView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            locationInputView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            locationInputView.heightAnchor.constraint(equalToConstant: locationInputViewHeight)
+        ])
         
         locationInputView.alpha = 0
         

@@ -91,9 +91,21 @@ class LocationInputView: UIView {
         addSubview(backButton)
         backButton.anchor(top: topAnchor, left: leftAnchor, paddingTop: 44, paddingLeft: 12, width: 24, height: 25)
         
+//        NSLayoutConstraint.activate([
+//            backButton.topAnchor.constraint(equalTo: topAnchor, constant: 44),
+//            backButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 12),
+//            backButton.widthAnchor.constraint(equalToConstant: 24),
+//            backButton.heightAnchor.constraint(equalToConstant: 25)
+//        ])
+        
         addSubview(titleLabel)
         titleLabel.centerY(inView: backButton)
         titleLabel.centerX(inView: self)
+        
+//        NSLayoutConstraint.activate([
+//            titleLabel.centerYAnchor.constraint(equalTo: backButton),
+//            titleLabel.centerXAnchor.constraint(equalTo: self)
+//        ])
         
         addSubview(startingLocationTextField)
         startingLocationTextField.anchor(top: backButton.bottomAnchor, left: leftAnchor, right: rightAnchor, paddingTop: 4, paddingLeft: 40, paddingRight: 40, height: 30)
