@@ -1,11 +1,10 @@
 import UIKit
 
 class LocationCell: UITableViewCell {
-
     // MARK: - Properties
     
     private lazy var titleLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
         label.text = "123 Main Street"
         
@@ -13,7 +12,7 @@ class LocationCell: UITableViewCell {
     }()
     
     private lazy var addressLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = .lightGray
         label.text = "123 Main Street"

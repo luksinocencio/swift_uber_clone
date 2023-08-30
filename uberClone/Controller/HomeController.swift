@@ -151,12 +151,16 @@ extension HomeController {
     }
 }
 
+// MARK: - LocationInputActivationViewDelegate
+
 extension HomeController: LocationInputActivationViewDelegate {
     func presentLocationInputView() {
         inputActivationView.alpha = 0
         configureLocationInputView()
     }
 }
+
+// MARK: - LocationInputViewDelegate
 
 extension HomeController: LocationInputViewDelegate {
     func dismissLocationInputView() {
@@ -171,6 +175,8 @@ extension HomeController: LocationInputViewDelegate {
         }
     }
 }
+
+// MARK: - UITableViewDelegate, UITableViewDataSource
 
 extension HomeController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
