@@ -1,13 +1,23 @@
-name: uberClone
+name: UberClone
+
+settings:
+  MARKETING_VERSION: "0.1.0"
+  SWIFT_VERSION: 5.7
+  VERSIONING_SYSTEM: "apple-generic"
+  CLANG_ENABLE_OBJC_WEAK: "YES"
+  ARCHS: $(ARCHS_STANDARD)
+
 options:
+  xcodeVersion: "14.3.1"
   bundleIdPrefix: com.devmeist3r
   createIntermediateGroups: true
   generateEmptyDirectories: true
-  developmentLanguage: en
+  developmentLanguage: "pt-BR"
   postGenCommand: pod install
+
 targets:
-  uberClone:
+  UberClone:
     type: application
     platform: iOS
     deploymentTarget: "13.0"
-    sources: [uberClone]
+    sources: [UberClone]

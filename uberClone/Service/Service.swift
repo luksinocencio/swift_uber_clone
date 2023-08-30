@@ -20,9 +20,9 @@ struct Service {
         let geofire = GeoFire(firebaseRef: REF_DRIVERS_LOCATIONS)
         
         REF_DRIVERS_LOCATIONS.observe(.value) { (snapshot) in
-            geofire.query(at: location, withRadius: 50).observe(.keyEntered) { (uid, location) in
-                print("DEBUG: UID is \(uid)")
-            }
+//            geofire.query(at: location, withRadius: 50).observe(.keyEntered) { (uid, location) in
+//                print("DEBUG: UID is \(uid)")
+//            }
         }
     }
 }
