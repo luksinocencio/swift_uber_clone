@@ -3,21 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>448323585051-p2reo8s72ah8s3b6kvbp5retoo6oml0u.apps.googleusercontent.com</string>
+	<string>229956737519-v0qu2fg9i1p1jvo5tkmlrtus7ogaj3a2.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.448323585051-p2reo8s72ah8s3b6kvbp5retoo6oml0u</string>
+	<string>com.googleusercontent.apps.229956737519-v0qu2fg9i1p1jvo5tkmlrtus7ogaj3a2</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>229956737519-pvar30j2ea59pb1aafppq0m2lpsl9i2e.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyA8wSH5HY2sSH7NiWiXsf85YTnsHEtssl8</string>
+	<string>AIzaSyAHzO6vRBA5_MoGcZXDJynaOknWfXagoTs</string>
 	<key>GCM_SENDER_ID</key>
-	<string>448323585051</string>
+	<string>229956737519</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.devmeist3r.uberClone</string>
+	<string>com.devmeist3r</string>
 	<key>PROJECT_ID</key>
-	<string>iosprojects-8ee77</string>
+	<string>defaultproject-fb30e</string>
 	<key>STORAGE_BUCKET</key>
-	<string>iosprojects-8ee77.appspot.com</string>
+	<string>defaultproject-fb30e.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +31,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:448323585051:ios:48df3a36bdc5c8bf8e64be</string>
+	<string>1:229956737519:ios:d746b2fc6b8e24a66abe1a</string>
 	<key>DATABASE_URL</key>
-	<string>https://iosprojects-8ee77.firebaseio.com</string>
+	<string>https://defaultproject-fb30e.firebaseio.com</string>
 </dict>
 </plist>
